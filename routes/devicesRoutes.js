@@ -7,7 +7,7 @@ const {
 const validateToken = require("../middleware/validateTokenHandler");
 
 router.use(validateToken);
-router.route("/").get(getDevices);
+router.route("/devices").get(getDevices);
 
 
 module.exports = router;

@@ -8,3 +8,5 @@ const getDevices = asyncHandler(async (req, res) => {
     const devices = await Device.find({ user_id: req.user.id });
     res.status(200).json(devices);
   });
+
+module.exports = {getDevices};
