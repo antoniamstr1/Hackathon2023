@@ -6,7 +6,7 @@ const jwt = require("jsonwebtoken");
 //@route POST /api/users/register
 //@access public
 const registerUser = asyncHandler(async (req,res) => {
-    const {username, email, password, phone} = req.body;
+    const {role,username, email, password, phone} = req.body;
     if (!username || !email || !phone || !password){
        res.status(400);
        throw new Error("All field are mandatory");
@@ -23,6 +23,7 @@ const registerUser = asyncHandler(async (req,res) => {
     console.log("Hashed password: ",hashedPassword);
 
     const user = await User.create({
+        role,
         username,
         email,
         password: hashedPassword,
@@ -80,4 +81,25 @@ const currentUser = asyncHandler(async (req,res) => {
     res.json(req.user);
 });
 
-module.exports = {registerUser, loginUser, currentUser}
+const logoutUser = asyncHandler(async (req,res) => {
+    const user = await User.findOne({email});
+    const accessToken = jwt.sign({
+        user: {
+            username:user.username,
+            email:user.email,
+            id: user.id,
+            phone: user.phone,
+        },
+    },process.env.ACCESS_TOKEN_SECRET,
+    { expiresIn: 1 } , (logout, err) => {
+        if (logout) {
+        res.send({msg : 'You have been Logged Out' });
+        } else {
+        res.send({msg:'Error'});
+        }
+        });
+    res.status(200).json({accessToken});
+}
+);
+
+module.exports = {registerUser, loginUser, currentUser, logoutUser}
