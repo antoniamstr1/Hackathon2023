@@ -17,6 +17,7 @@ import MenuOutlinedIcon from "@mui/icons-material/MenuOutlined";
 import MapOutlinedIcon from "@mui/icons-material/MapOutlined";
 
 const Item = ({ title, to, icon, selected, setSelected }) => {
+
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
   return (
@@ -35,6 +36,7 @@ const Item = ({ title, to, icon, selected, setSelected }) => {
 };
 
 const Sidebar = () => {
+  let loggedUser = "admin"
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
   const [isCollapsed, setIsCollapsed] = useState(false);
@@ -137,13 +139,22 @@ const Sidebar = () => {
             >
               Pages
             </Typography>
+
             <Item
-              title="Profile Form"
+              title="My Profile"
+              to="/profile"
+              icon={<PersonOutlinedIcon />}
+              selected={selected}
+              setSelected={setSelected}/>
+            
+            {loggedUser === "admin" &&
+              <Item
+              title="Profile form"
               to="/form"
               icon={<PersonOutlinedIcon />}
               selected={selected}
-              setSelected={setSelected}
-            />
+              setSelected={setSelected}/>
+            }
 
             <Typography
               variant="h6"

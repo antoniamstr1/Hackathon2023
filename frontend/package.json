@@ -12,6 +12,7 @@
     "@mui/material": "^5.11.13",
     "@mui/x-data-grid": "^6.0.2",
     "@nivo/bar": "^0.80.0",
+    "@nivo/geo": "^0.80.0",
     "@nivo/line": "^0.80.0",
     "@nivo/pie": "^0.80.0",
     "@testing-library/jest-dom": "^5.16.4",

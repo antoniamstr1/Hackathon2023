@@ -18,6 +18,7 @@ import Pie from "./scenes/pie";
 import { CssBaseline, ThemeProvider } from "@mui/material";
 import { ColorModeContext, useMode } from "./theme";
 import UserHome from "./components/userHome";
+import AdminHome from "./components/adminHome";
 
 function App() {
   const isLoggedIn = window.localStorage.getItem("loggedIn");
@@ -29,8 +30,8 @@ function App() {
     <Routes>
       <Route
         exact
-        path="/"
-        element={isLoggedIn === "true" ? <UserDetails /> : <Login />}
+        path="*"
+        element={isLoggedIn === "true" ? <UserDetails /> : <UserHome />}
       />
 
       <Route path="/sign-in" element={<Login />} />
