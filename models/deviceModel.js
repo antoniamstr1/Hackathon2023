@@ -15,6 +15,10 @@ const deviceSchema = mongoose.Schema(
       type: String,
       required: [true],
     },
+    tip: {
+      type: String,
+      required: [true],
+    },
   },
   {
     timestamps: true,
