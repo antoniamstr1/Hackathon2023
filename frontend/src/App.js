@@ -17,44 +17,28 @@ import Pie from "./scenes/pie";
 
 import { CssBaseline, ThemeProvider } from "@mui/material";
 import { ColorModeContext, useMode } from "./theme";
+import UserHome from "./components/userHome";
 
 function App() {
   const isLoggedIn = window.localStorage.getItem("loggedIn");
-
-  const [theme, colorMode] = useMode();
   const [isSidebar, setIsSidebar] = useState(true);
-
+  const [theme, colorMode] = useMode();
 
   return (
-    <ColorModeContext.Provider value={colorMode}>
-      <ThemeProvider theme={theme}>
-        <CssBaseline />
+<>
+    <Routes>
+      <Route
+        exact
+        path="/"
+        element={isLoggedIn === "true" ? <UserDetails /> : <Login />}
+      />
 
+      <Route path="/sign-in" element={<Login />} />
+      <Route path="/sign-up" element={<SignUp />} />
+      <Route path="/userDetails" element={<UserDetails />} />
 
-        <div className="App">
-          <Sidebar isSidebar={isSidebar} />
-          <main className="content">
-            <Topbar setIsSidebar={setIsSidebar} />
-            <Routes>
-              {/* <Route
-                exact
-                path="/"
-                element={isLoggedIn === "true" ? <UserDetails /> : <Login />}
-              /> */}
-              <Route path="/sign-in" element={<Login />} />
-              <Route path="/sign-up" element={<SignUp />} />
-              <Route path="/userDetails" element={<UserDetails />} />
-              <Route path="/" element={<Dashboard />} />
-              <Route path="/users" element={<Users />} />
-              <Route path="/form" element={<Form />} />
-              <Route path="/bar" element={<Bar />} />
-              <Route path="/pie" element={<Pie />} />
-              <Route path="/line" element={<Line />} />
-            </Routes>
-          </main>
-        </div>
-      </ThemeProvider>
-    </ColorModeContext.Provider>
+    </Routes>
+    </>
   );
 }
 
