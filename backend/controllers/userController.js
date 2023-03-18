@@ -32,7 +32,7 @@ const registerUser = asyncHandler(async (req,res) => {
     console.log("User created");
     //response in JSON/*
     if (user){
-        res.status(201).json({_id: user.id, email: user.email});
+        res.status(201).json({_id: user.id, email: user.email,username: user.username, phone: user.phone});
     }
     else{
         res.status(400);
@@ -63,7 +63,7 @@ const loginUser = asyncHandler(async (req,res) => {
             },
         },process.env.ACCESS_TOKEN_SECRET,
         {expiresIn:"15m"});
-        res.status(200).json({accessToken});
+        res.status(200).json({accessToken,_id: user.id, email: user.email, role: user.role});
 
     }else{
         res.status(401);
