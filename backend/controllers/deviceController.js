@@ -4,14 +4,25 @@ const Device = require("../models/deviceModel");
 //@desc Get all device
 //@route GET /api/devices
 //@access private
+//get sve device jednog korisnika
 const getDevices = asyncHandler(async (req, res) => {
     const devices = await Device.find({ user_id: req.user.id });
     res.status(200).json(devices);
   });
+  
+//@desc Get all device
+//@route GET /api/devices
+//@access private
+//get sve device jednog korisnika
+const getDevicesAll = asyncHandler(async (req, res) => {
+  const devices2 = await Device.find();
+  res.status(200).json(devices2);
+});
 
 //@desc Get contact
 //@route GET /api/device/:id
 //@access private
+//get dodatni info o jednom device
 const getDevice = asyncHandler(async (req, res) => {
     const device = await Device.findById(req.params.id);
     if (!device) {
@@ -22,7 +33,7 @@ const getDevice = asyncHandler(async (req, res) => {
   });
 
 
-//@desc Create New contact
+//@desc Create New device
 //@route POST /api/devices
 //@access private
 const createDevice = asyncHandler(async (req, res) => {
