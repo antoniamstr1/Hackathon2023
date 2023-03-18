@@ -3,7 +3,6 @@ const mongoose = require("mongoose");
 const threatSchema = mongoose.Schema(
   {
 
-
     title: {
       type: String,
       required: [true],
@@ -21,7 +20,7 @@ const threatSchema = mongoose.Schema(
         type: Boolean,
       },
     threat_severity: {
-        type: Number,
+        type: String,
       },
       country: {
         type: String,
@@ -32,4 +31,4 @@ const threatSchema = mongoose.Schema(
   }
 );
 
-module.exports = mongoose.model("Threat", threatSchema);
+module.exports = mongoose.model("Threats", threatSchema);

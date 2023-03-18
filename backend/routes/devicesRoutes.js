@@ -1,5 +1,5 @@
 const express = require("express");
-const router = express.Router();
+
 const {
   getDevices,
   getDevice,
@@ -8,10 +8,11 @@ const {
 } = require("../controllers/deviceController");
 const validateToken = require("../middleware/validateTokenHandler");
 
+const router = express.Router();
 router.use(validateToken);
 router.route("/").get(getDevices);
-router.route("/").post(getDevices);
-router.route("/:id").get(createDevice);
+router.route("/").post(createDevice);
+router.route("/:id").get(getDevices);
 
 
 module.exports = router;

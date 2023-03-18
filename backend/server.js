@@ -15,6 +15,7 @@ app.use(express.json());
 app.use("/api/users",require("./routes/userRoutes"));
 app.use("/api/devices",require("./routes/devicesRoutes"));
 app.use("/api/documents",require("./routes/documentRoutes"));
+app.use("/api/threats",require("./routes/threatRoutes"));
 
 
 

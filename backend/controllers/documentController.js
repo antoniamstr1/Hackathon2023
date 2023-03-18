@@ -20,4 +20,25 @@ const getAllDocuments = asyncHandler(async (req, res) => {
     res.status(200).json(devices);
 });
 
+const createDocument = asyncHandler(async (req, res) => {
+    console.log("The request body is :", req.body);
+    const { title, SHA256Hash, type, creation_date, threat, threat_severity, user_id, device_id} = req.body;
+    if (!title || !SHA256Hash || !type || !creation_date || !threat || !threat_severity || !user_id || !device_id) {
+      res.status(400);
+      throw new Error("All fields are mandatory !");
+    }
+    const document = await Device.create({
+      title,
+      SHA256Hash,
+      type,
+      creation_date,
+      threat,
+      threat_severity,
+      user_id,
+      device_id
+    });
+  
+    res.status(201).json(document);
+  });
+
 module.exports = {getDocumentsUser, getDocumentsDevice, getAllDocuments}

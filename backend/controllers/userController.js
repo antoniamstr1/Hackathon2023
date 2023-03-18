@@ -24,7 +24,7 @@ const registerUser = asyncHandler(async (req,res) => {
 
     const user = await User.create({
         role,
-        username,
+        username,/*  */
         email,
         password: hashedPassword,
         phone,
@@ -94,4 +94,14 @@ const logoutUser = asyncHandler(async (req,res) => {
 }
 );
 
-module.exports = {registerUser, loginUser, currentUser, logoutUser}
+const getUser = asyncHandler(async (req, res) => {
+    const user = await User.findById(req.params.id);
+    if (!user) {
+      res.status(404);
+      throw new Error("Contact not found");
+    }
+    res.status(200).json(user);
+  });
+
+
+module.exports = {registerUser, loginUser, currentUser, logoutUser,getUser}

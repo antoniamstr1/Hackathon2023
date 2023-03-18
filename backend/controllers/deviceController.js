@@ -53,4 +53,4 @@ const createDevice = asyncHandler(async (req, res) => {
     res.status(201).json(device);
   });
   
-module.exports = {getDevices,getDevice,createDevice};
+module.exports = {getDevices,getDevice,createDevice,getDevicesAll};
