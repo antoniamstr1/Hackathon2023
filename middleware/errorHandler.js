@@ -22,7 +22,7 @@ const errorHandler = (err, req, res, next) => {
             res.json({title: "Forbidden", 
                         message: err.message, 
                         stackTrace:err.stack});
-                break;
+            break;
         case constants.SERVER_ERROR:
             res.json({title: "Server error", 
                         message: err.message, 
