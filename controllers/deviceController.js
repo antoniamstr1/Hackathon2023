@@ -32,14 +32,14 @@ const createDevice = asyncHandler(async (req, res) => {
       res.status(400);
       throw new Error("All fields are mandatory !");
     }
-    const contact = await Device.create({
+    const device = await Device.create({
       name,
       IpAdresa,
       tip,
       user_id: req.user.id,
     });
   
-    res.status(201).json(contact);
+    res.status(201).json(device);
   });
   
 module.exports = {getDevices,getDevice,createDevice};
