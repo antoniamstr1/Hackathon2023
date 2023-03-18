@@ -82,15 +82,7 @@ const currentUser = asyncHandler(async (req,res) => {
 });
 
 const logoutUser = asyncHandler(async (req,res) => {
-    const user = await User.findOne({email});
-    const accessToken = jwt.sign({
-        user: {
-            username:user.username,
-            email:user.email,
-            id: user.id,
-            phone: user.phone,
-        },
-    },process.env.ACCESS_TOKEN_SECRET,
+    const accessToken = jwt.sign(process.env.ACCESS_TOKEN_SECRET,
     { expiresIn: 1 } , (logout, err) => {
         if (logout) {
         res.send({msg : 'You have been Logged Out' });
