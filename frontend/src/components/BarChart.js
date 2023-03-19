@@ -10,7 +10,9 @@ const BarChart = ({ isDashboard = false }) => {
 
   let titles = []
   mockThreat.map((e) => {
-    titles.push(e.title)
+    if (!titles.includes(e.title)) {
+      titles.push(e.title)
+    }
 
     if (e.title === "Spyware") {
       obj.push({
@@ -56,7 +58,7 @@ const BarChart = ({ isDashboard = false }) => {
       })
     }
   })
-  
+
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
 

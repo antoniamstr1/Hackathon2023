@@ -1,16 +1,59 @@
 import { tokens } from "../theme";
 
-//           key     title : count  
-// country: "AD",  "hot dog": 137, "hot dogColor": "hsl(229, 70%, 50%)",
+export const mockPieData = [
+  {
+    id: "Spyware",
+    label: "Spyware",
+    value: 239,
+    color: "hsl(104, 70%, 50%)",
+  },
+  {
+    id: "Trojans",
+    label: "Trojans",
+    value: 170,
+    color: "hsl(162, 70%, 50%)",
+  },
+  {
+    id: "Adware",
+    label: "Adware",
+    value: 322,
+    color: "hsl(291, 70%, 50%)",
+  },
+  {
+    id: "Fileless_Malware",
+    label: "Fileless_Malware",
+    value: 503,
+    color: "hsl(229, 70%, 50%)",
+  },
+  {
+    id: "Worms",
+    label: "Worms",
+    value: 584,
+    color: "hsl(344, 70%, 50%)",
+  },
+  {
+    id: "Viruses",
+    label: "Viruses",
+    value: 584,
+    color: "hsl(344, 70%, 50%)",
+  },
+  {
+    id: "Ransomware",
+    label: "Ransomware",
+    value: 584,
+    color: "hsl(344, 70%, 50%)",
+  }
+];
+
 
 export const mockThreat = [
-  
+
   {
     title: "Spyware",
     SHA256Hash: "hash",
     type: "Spyware",
     threat: true,
-    threat_severity: 2,
+    threat_severity: 5,
     country: "Croatia",
     source: "instagram"
   },
@@ -18,7 +61,7 @@ export const mockThreat = [
   {
     title: "Trojans",
     SHA256Hash: "hash",
-    type: "Spyware",
+    type: "Trojans",
     threat: true,
     threat_severity: 8,
     country: "Croatia",
@@ -28,9 +71,9 @@ export const mockThreat = [
   {
     title: "Adware",
     SHA256Hash: "hash",
-    type: "Spyware",
+    type: "Adware",
     threat: true,
-    threat_severity: 50,
+    threat_severity: 40,
     country: "Croatia",
     source: "facebook"
   },
@@ -55,13 +98,22 @@ export const mockThreat = [
     source: "snapchat"
   },
   {
-    title: "Viruses",
+    title: "Fileless_Malware",
     SHA256Hash: "hash",
     type: "Spyware",
     threat: true,
-    threat_severity: 40,
+    threat_severity: 10,
     country: "Croatia",
     source: "mail"
+  },
+  {
+    title: "Fileless_Malware",
+    SHA256Hash: "hash",
+    type: "Spyware",
+    threat: true,
+    threat_severity: 20,
+    country: "Croatia",
+    source: "whatsapp"
   },
   {
     title: "Ransomware",
@@ -72,6 +124,15 @@ export const mockThreat = [
     country: "Croatia",
     source: "instagram"
   },
+  {
+    title: "Ransomware",
+    SHA256Hash: "hash",
+    type: "Spyware",
+    threat: true,
+    threat_severity: 10,
+    country: "Croatia",
+    source: "whatsapp"
+  }
 ]
 
 
@@ -142,202 +203,218 @@ export const mockDataUsers = [
 ];
 
 
-export const mockPieData = [
-  {
-    id: "hack",
-    label: "hack",
-    value: 239,
-    color: "hsl(104, 70%, 50%)",
-  },
-  {
-    id: "make",
-    label: "make",
-    value: 170,
-    color: "hsl(162, 70%, 50%)",
-  },
-  {
-    id: "go",
-    label: "go",
-    value: 322,
-    color: "hsl(291, 70%, 50%)",
-  },
-  {
-    id: "lisp",
-    label: "lisp",
-    value: 503,
-    color: "hsl(229, 70%, 50%)",
-  },
-  {
-    id: "scala",
-    label: "scala",
-    value: 584,
-    color: "hsl(344, 70%, 50%)",
-  },
-];
-
 export const mockLineData = [
   {
-    id: "user1",
+    id: "Ransomware",
     color: tokens("dark").greenAccent[500],
     data: [
       {
-        x: "8h",
+        x: "Brazil",
         y: 100,
       },
       {
-        x: "9h",
+        x: "England",
         y: 85,
       },
       {
-        x: "10h",
+        x: "Croatia",
         y: 83,
       },
       {
-        x: "11h",
+        x: "Albania",
         y: 175,
       },
       {
-        x: "12h",
+        x: "Francuska",
         y: 173,
       },
       {
-        x: "13h",
+        x: "Čile",
         y: 218,
       },
       {
-        x: "14h",
-        y: 29,
-      },
-      {
-        x: "15h",
-        y: 200,
-      },
-      {
-        x: "16h",
-        y: 200,
-      },
-      {
-        x: "17h",
+        x: "Slovenia",
         y: 92,
       },
       {
-        x: "18h",
+        x: "Srbija",
         y: 94,
       },
       {
-        x: "19",
+        x: "BiH",
         y: 59,
       },
     ],
   },
   {
-    id: "user2",
-    color: tokens("dark").blueAccent[300],
+    id: "Worms",
+    color: tokens("dark").greenAccent[500],
     data: [
       {
-        x: "8h",
-        y: 191,
+        x: "Brazil",
+        y: 140,
       },
       {
-        x: "9h",
-        y: 35,
+        x: "England",
+        y: 25,
       },
       {
-        x: "10h",
-        y: 95,
+        x: "Croatia",
+        y: 40,
       },
       {
-        x: "11h",
-        y: 211,
+        x: "Albania",
+        y: 135,
       },
       {
-        x: "12h",
-        y: 100,
+        x: "Francuska",
+        y: 103,
       },
       {
-        x: "13h",
-        y: 102,
+        x: "Čile",
+        y: 118,
       },
       {
-        x: "14h",
-        y: 197,
+        x: "Slovenia",
+        y: 192,
       },
       {
-        x: "15h",
-        y: 35,
+        x: "Srbija",
+        y: 84,
       },
       {
-        x: "16h",
-        y: 8,
-      },
-      {
-        x: "17h",
-        y: 197,
-      },
-      {
-        x: "18h",
-        y: 90,
-      },
-      {
-        x: "19",
-        y: 200,
+        x: "BiH",
+        y: 29,
       },
     ],
   },
   {
-    id: "user3",
-    color: tokens("dark").redAccent[200],
+    id: "Adware",
+    color: tokens("dark").greenAccent[500],
     data: [
       {
-        x: "8h",
-        y: 191,
+        x: "Brazil",
+        y: 100,
       },
       {
-        x: "9h",
-        y: 136,
+        x: "England",
+        y: 75,
       },
       {
-        x: "10h",
-        y: 91,
+        x: "Croatia",
+        y: 50,
       },
       {
-        x: "11h",
-        y: 190,
+        x: "Albania",
+        y: 145,
       },
       {
-        x: "12h",
-        y: 211,
+        x: "Francuska",
+        y: 103,
       },
       {
-        x: "13h",
-        y: 152,
+        x: "Čile",
+        y: 218,
       },
       {
-        x: "14h",
-        y: 189,
+        x: "Slovenia",
+        y: 202,
       },
       {
-        x: "15h",
-        y: 152,
+        x: "Srbija",
+        y: 94,
       },
       {
-        x: "16h",
-        y: 8,
-      },
-      {
-        x: "17h",
-        y: 197,
-      },
-      {
-        x: "18h",
-        y: 107,
-      },
-      {
-        x: "19",
-        y: 170,
+        x: "BiH",
+        y: 39,
       },
     ],
   },
+  {
+    id: "Trojans",
+    color: tokens("dark").greenAccent[500],
+    data: [
+      {
+        x: "Brazil",
+        y: 100,
+      },
+      {
+        x: "England",
+        y: 75,
+      },
+      {
+        x: "Croatia",
+        y: 50,
+      },
+      {
+        x: "Albania",
+        y: 145,
+      },
+      {
+        x: "Francuska",
+        y: 103,
+      },
+      {
+        x: "Čile",
+        y: 218,
+      },
+      {
+        x: "Slovenia",
+        y: 202,
+      },
+      {
+        x: "Srbija",
+        y: 94,
+      },
+      {
+        x: "BiH",
+        y: 39,
+      },
+    ],
+  },
+  {
+    id: "Adware",
+    color: tokens("dark").greenAccent[500],
+    data: [
+      {
+        x: "Brazil",
+        y: 100,
+      },
+      {
+        x: "England",
+        y: 75,
+      },
+      {
+        x: "Croatia",
+        y: 50,
+      },
+      {
+        x: "Albania",
+        y: 145,
+      },
+      {
+        x: "Francuska",
+        y: 103,
+      },
+      {
+        x: "Čile",
+        y: 218,
+      },
+      {
+        x: "Slovenia",
+        y: 202,
+      },
+      {
+        x: "Srbija",
+        y: 94,
+      },
+      {
+        x: "BiH",
+        y: 39,
+      },
+    ],
+  },
+   
 ];
 
 export const mockGeographyData = [
