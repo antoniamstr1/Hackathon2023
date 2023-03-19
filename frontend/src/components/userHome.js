@@ -8,6 +8,7 @@ import Dashboard from "../scenes/dashboard";
 import Users from "../scenes/users";
 import Bar from "../scenes/bar";
 import Form from "../scenes/form";
+import Profile from "../scenes/profile";
 import Line from "../scenes/line";
 import Pie from "../scenes/pie";
 
@@ -40,8 +41,7 @@ export default function UserHome({ userData }) {
               <Topbar setIsSidebar={setIsSidebar} />
               <Routes>
                 <Route path="/" element={<Dashboard />} />
-                <Route path="/users" element={<Users />} />
-                <Route path="/form" element={<Form />} />
+                <Route path="/profile" element={<Profile />} />
                 <Route path="/bar" element={<Bar />} />
                 <Route path="/pie" element={<Pie />} />
                 <Route path="/line" element={<Line />} />

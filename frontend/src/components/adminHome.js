@@ -1,10 +1,25 @@
 import React, { Component, useEffect, useState } from "react";
-import { faTrash } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import ReactPaginate from 'react-paginate';
 import { useRef } from "react";
-export default function AdminHome({ userData }) {
+import "../../node_modules/bootstrap/dist/css/bootstrap.min.css";
+import "../App.css";
+import { Routes, Route } from "react-router-dom";
+import Topbar from "../scenes/global/Topbar";
+import Sidebar from "../scenes/global/Sidebar";
+import Dashboard from "../scenes/dashboard";
+import Users from "../scenes/users";
+import Bar from "../scenes/bar";
+import Form from "../scenes/form";
+import Profile from "../scenes/profile";
+import Line from "../scenes/line";
+import Pie from "../scenes/pie";
 
+import { CssBaseline, ThemeProvider } from "@mui/material";
+import { ColorModeContext, useMode } from "../theme";
+
+export default function AdminHome({ userData }) {
+  const [isSidebar, setIsSidebar] = useState(true);
+  const [theme, colorMode] = useMode();
   //setting state
   const [data, setData] = useState([]);
   const [limit,setLimit]=useState(5);
@@ -73,10 +88,6 @@ export default function AdminHome({ userData }) {
    
 
   }
-  function changeLimit(){
-    currentPage.current=1;
-    getPaginatedUsers();
-  }
 
   function getPaginatedUsers(){
     fetch(`http://localhost:5000/paginatedUsers?page=${currentPage.current}&limit=${limit}`, {
@@ -94,32 +105,29 @@ export default function AdminHome({ userData }) {
   }
 
   return (
-    <div className="auth-wrapper" style={{ height: "auto" }}>
-      <div className="auth-inner" style={{ width: "auto" }}>
-        <h3>Welcom Admin</h3>
-        <table style={{ width: 500 }}>
-          <tr>
-            <th>Name</th>
-            <th>Email</th>
-            <th>User Type</th>
-            <th>Delete</th>
-          </tr>
-          {data.map((i) => {
-            return (
-              <tr>
-                <td>{i.fname}</td>
-                <td>{i.email}</td>
-                <td>{i.userType}</td>
-                <td>
-                  <FontAwesomeIcon
-                    icon={faTrash}
-                    onClick={() => deleteUser(i._id, i.fname)}
-                  />
-                </td>
-              </tr>
-            );
-          })}
-        </table>
+    <>
+    <ColorModeContext.Provider value={colorMode}>
+        <ThemeProvider theme={theme}>
+          <CssBaseline />
+
+          <div className="App">
+          <Sidebar isSidebar={isSidebar} />
+            <main className="content">
+              <Topbar setIsSidebar={setIsSidebar} />
+              <Routes>
+                <Route path="/" element={<Dashboard />} />
+                <Route path="/users" element={<Users />} />
+                <Route path="/form" element={<Form />} />
+                <Route path="/profile" element={<Profile />} />
+                <Route path="/bar" element={<Bar />} />
+                <Route path="/pie" element={<Pie />} />
+                <Route path="/line" element={<Line />} />
+              </Routes>
+
+            </main>
+          </div>
+        </ThemeProvider>
+      </ColorModeContext.Provider>
         <ReactPaginate
           breakLabel="..."
           nextLabel="next >"
@@ -139,12 +147,9 @@ export default function AdminHome({ userData }) {
           activeClassName="active"
           forcePage={currentPage.current-1}
         />
-        <input placeholder="Limit" onChange={e=>setLimit(e.target.value)}/>
-        <button onClick={changeLimit}>Set Limit</button>
         <button onClick={logOut} className="btn btn-primary">
           Log Out
         </button>
-      </div>
-    </div>
+    </>
   );
 }
