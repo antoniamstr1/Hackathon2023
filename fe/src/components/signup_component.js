@@ -1,17 +1,22 @@
 import React, { Component, useState } from "react";
 
 export default function SignUp() {
+  const [role, setRole] = useState("");
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [phone, setPhone] = useState("");
-  const role = "User";
+  const [secretKey, setSecretKey] = useState("");
 
   const handleSubmit = (e) => {
+    if (role === "Admin" && secretKey !== "AdarshT") {
+      e.preventDefault();
+      alert("Invalid Admin");
+    } else {
+      e.preventDefault();
 
-
-      console.log(username, email, password, phone);
-      fetch("http://localhost:5000/api/users/register", {
+      console.log(username, email, password);
+      fetch("http://localhost:5000/register", {
         method: "POST",
         crossDomain: true,
         headers: {
@@ -22,21 +27,20 @@ export default function SignUp() {
         body: JSON.stringify({
           role,
           username,
-          email,
-          password,
+          email,password,
           phone,
         }),
       })
         .then((res) => res.json())
         .then((data) => {
           console.log(data, "userRegister");
-          if (data.status ==="ok") {
+          if (data.status === "ok") {
             alert("Registration Successful");
           } else {
             alert("Something went wrong");
           }
         });
-    
+    }
   };
 
   return (
@@ -44,24 +48,52 @@ export default function SignUp() {
       <div className="auth-inner">
         <form onSubmit={handleSubmit}>
           <h3>Sign Up</h3>
-
+          <div>
+            Register As
+            <input
+              type="radio"
+              name="role"
+              value="User"
+              onChange={(e) => setRole(e.target.value)}
+            />
+            User
+            <input
+              type="radio"
+              name="UserType"
+              value="Admin"
+              onChange={(e) => setRole(e.target.value)}
+            />
+            Admin
+          </div>
+          {role === "Admin" ? (
+            <div className="mb-3">
+              <label>Secret Key</label>
+              <input
+                type="text"
+                className="form-control"
+                placeholder="Secret Key"
+                onChange={(e) => setSecretKey(e.target.value)}
+              />
+            </div>
+          ) : null}
 
           <div className="mb-3">
             <label>Username</label>
             <input
               type="text"
               className="form-control"
-              placeholder="Username"
+              placeholder="First name"
               onChange={(e) => setUsername(e.target.value)}
             />
           </div>
 
+
           <div className="mb-3">
-            <label>Email</label>
+            <label>Email address</label>
             <input
-              type="text"
+              type="email"
               className="form-control"
-              placeholder="Email"
+              placeholder="Enter email"
               onChange={(e) => setEmail(e.target.value)}
             />
           </div>
@@ -71,7 +103,7 @@ export default function SignUp() {
             <input
               type="password"
               className="form-control"
-              placeholder="Password"
+              placeholder="Enter password"
               onChange={(e) => setPassword(e.target.value)}
             />
           </div>
@@ -81,7 +113,7 @@ export default function SignUp() {
             <input
               type="text"
               className="form-control"
-              placeholder="Phone"
+              placeholder="phone"
               onChange={(e) => setPhone(e.target.value)}
             />
           </div>

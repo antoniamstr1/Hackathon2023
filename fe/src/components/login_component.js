@@ -8,7 +8,7 @@ export default function Login() {
     e.preventDefault();
 
     console.log(email, password);
-    fetch("http://localhost:5000/api/users/login", {
+    fetch("http://localhost:5000/login-user", {
       method: "POST",
       crossDomain: true,
       headers: {
@@ -23,17 +23,14 @@ export default function Login() {
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data, "userRegister2");
-        console.log("data.data;",data);
-        console.log("data.status;",data.status);
-        //if (data.status === "ok") {
+        console.log(data, "userRegister");
+        if (data.status === "ok") {
           alert("login successful");
-          console.log(data.data);
           window.localStorage.setItem("token", data.data);
           window.localStorage.setItem("loggedIn", true);
 
-          window.location.href = "./userDetails";
-        //}
+          window.location.href = "./komponenta";
+        }
       });
   }
 
@@ -63,7 +60,18 @@ export default function Login() {
             />
           </div>
 
-
+          <div className="mb-3">
+            <div className="custom-control custom-checkbox">
+              <input
+                type="checkbox"
+                className="custom-control-input"
+                id="customCheck1"
+              />
+              <label className="custom-control-label" htmlFor="customCheck1">
+                Remember me
+              </label>
+            </div>
+          </div>
 
           <div className="d-grid">
             <button type="submit" className="btn btn-primary">
