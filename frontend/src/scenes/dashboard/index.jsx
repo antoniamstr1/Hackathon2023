@@ -12,6 +12,8 @@ import BarChart from "../../components/BarChart";
 import StatBox from "../../components/StatBox";
 import ProgressCircle from "../../components/ProgressCircle";
 import GeographyChart from "../../components/GeographyChart";
+import BugReportIcon from '@mui/icons-material/BugReport';
+import ErrorIcon from '@mui/icons-material/Error';
 
 const Dashboard = () => {
   const theme = useTheme();
@@ -35,12 +37,12 @@ const Dashboard = () => {
           justifyContent="center"
         >
           <StatBox
-            title="12,361"
-            subtitle="Emails Sent"
+            title="424"
+            subtitle="Unique Vulnerabilities"
             progress="0.75"
             increase="+14%"
             icon={
-              <EmailIcon
+              <ErrorIcon
                 sx={{ color: colors.greenAccent[600], fontSize: "26px" }}
               />
             }
@@ -54,12 +56,12 @@ const Dashboard = () => {
           justifyContent="center"
         >
           <StatBox
-            title="431,225"
-            subtitle="Sales Obtained"
+            title="44"
+            subtitle="Critical"
             progress="0.50"
             increase="+21%"
             icon={
-              <PointOfSaleIcon
+              <BugReportIcon
                 sx={{ color: colors.greenAccent[600], fontSize: "26px" }}
               />
             }
@@ -86,7 +88,7 @@ const Dashboard = () => {
                 fontWeight="600"
                 color={colors.grey[100]}
               >
-                Revenue Generated
+                Country Based Threats
               </Typography>
               <Typography
                 variant="h3"
