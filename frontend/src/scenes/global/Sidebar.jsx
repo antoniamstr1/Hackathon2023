@@ -16,8 +16,8 @@ import TimelineOutlinedIcon from "@mui/icons-material/TimelineOutlined";
 import MenuOutlinedIcon from "@mui/icons-material/MenuOutlined";
 import MapOutlinedIcon from "@mui/icons-material/MapOutlined";
 
-const Item = ({ title, to, icon, selected, setSelected }) => {
-
+const Item = ({ title, to, icon, selected, setSelected}) => {
+ 
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
   return (
@@ -35,8 +35,9 @@ const Item = ({ title, to, icon, selected, setSelected }) => {
   );
 };
 
-const Sidebar = () => {
-  let loggedUser = "admin"
+
+const Sidebar = (userData) => {
+  let loggedUser = userData.userData.role
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
   const [isCollapsed, setIsCollapsed] = useState(false);
@@ -81,7 +82,7 @@ const Sidebar = () => {
                 ml="15px"
               >
                 <Typography variant="h3" color={colors.grey[100]}>
-                  ADMINIS
+                  
                 </Typography>
                 <IconButton onClick={() => setIsCollapsed(!isCollapsed)}>
                   <MenuOutlinedIcon />
@@ -94,15 +95,12 @@ const Sidebar = () => {
             <Box mb="25px">
               <Box textAlign="center">
                 <Typography
-                  variant="h2"
+                  variant="h3"
                   color={colors.grey[100]}
                   fontWeight="bold"
                   sx={{ m: "10px 0 0 0" }}
                 >
-                ADMIN
-                </Typography>
-                <Typography variant="h5" color={colors.greenAccent[500]}>
-                  Fancy Admin
+              Cyber Security App
                 </Typography>
               </Box>
             </Box>
@@ -117,20 +115,23 @@ const Sidebar = () => {
               setSelected={setSelected}
             />
 
-            <Typography
+        {loggedUser === "Admin" && <Typography
               variant="h6"
               color={colors.grey[300]}
               sx={{ m: "15px 0 5px 20px" }}
             >
               Data
             </Typography>
-            <Item
+}
+
+            {loggedUser === "Admin" && <Item
               title="See users"
               to="/users"
               icon={<PeopleOutlinedIcon />}
               selected={selected}
               setSelected={setSelected}
             />
+            }
 
             <Typography
               variant="h6"
@@ -147,7 +148,7 @@ const Sidebar = () => {
               selected={selected}
               setSelected={setSelected}/>
             
-            {loggedUser === "admin" &&
+            {loggedUser === "Admin" &&
               <Item
               title="Profile form"
               to="/form"

@@ -8,12 +8,12 @@ import Dashboard from "../scenes/dashboard";
 import Users from "../scenes/users";
 import Bar from "../scenes/bar";
 import Form from "../scenes/form";
-import Profile from "../scenes/profile";
 import Line from "../scenes/line";
 import Pie from "../scenes/pie";
 
 import { CssBaseline, ThemeProvider } from "@mui/material";
 import { ColorModeContext, useMode } from "../theme";
+import Profile from "../scenes/profile";
 
 export default function UserHome({ userData }) {
   // const logOut = () => {
@@ -24,7 +24,7 @@ export default function UserHome({ userData }) {
   const [theme, colorMode] = useMode();
   return (
     <>
-      {/* Name<h1>{userData.fname}</h1>
+      {/* Name<h1>{userData.username}</h1>
       Email <h1>{userData.email}</h1>
       <br />
       <button onClick={logOut} className="btn btn-primary">
@@ -36,12 +36,12 @@ export default function UserHome({ userData }) {
           <CssBaseline />
 
           <div className="App">
-          <Sidebar isSidebar={isSidebar} />
+          <Sidebar isSidebar={isSidebar} userData={userData} />
             <main className="content">
               <Topbar setIsSidebar={setIsSidebar} />
               <Routes>
-                <Route path="/" element={<Dashboard />} />
-                <Route path="/profile" element={<Profile />} />
+                <Route path="/" element={<Dashboard user={userData}/>} />
+                <Route path="/profile" element={<Profile userData={userData}/>} />
                 <Route path="/bar" element={<Bar />} />
                 <Route path="/pie" element={<Pie />} />
                 <Route path="/line" element={<Line />} />

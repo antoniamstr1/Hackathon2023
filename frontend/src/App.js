@@ -31,7 +31,7 @@ function App() {
       <Route
         exact
         path="*"
-        element={isLoggedIn === "true" ? <UserDetails /> : <AdminHome />}
+        element={isLoggedIn === "true" ? <UserDetails /> : <Login />}
       />
 
       <Route path="/sign-in" element={<Login />} />

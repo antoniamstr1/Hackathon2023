@@ -7,6 +7,8 @@ export default function UserDetails() {
   const [userData, setUserData] = useState("");
   const [admin, setAdmin] = useState(false);
 
+  localStorage.setItem(1,userData)
+
   useEffect(() => {
     fetch("http://localhost:5000/userData", {
       method: "POST",
